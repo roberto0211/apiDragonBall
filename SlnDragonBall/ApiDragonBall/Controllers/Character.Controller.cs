@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Response.Characters;
 using System.ComponentModel.DataAnnotations;
 using BO = Bussiness.Characters;
 
@@ -26,8 +27,9 @@ namespace ApiDragonBall.Controllers
         {
             try
             {
-                var result = await boCharacter.ListCharacter(name);
-                return Ok(result);
+                ResCharacter character = await boCharacter.GetCharacter(name);
+
+                return Ok(character);
             }
             catch (SqlException sqlex)
             {

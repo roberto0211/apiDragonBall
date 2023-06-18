@@ -3,6 +3,6 @@ namespace Interface.Characters
 {
     public interface ICharacter<T>
     {
-        Task<T> ListCharacter(string name);
+        Task<T> GetCharacter(string name);
     }
 }

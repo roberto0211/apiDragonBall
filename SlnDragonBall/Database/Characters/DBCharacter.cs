@@ -6,21 +6,21 @@ using System.Data;
 
 namespace Database.Characters
 {
-    public class DBCharacter: ICharacter<RESCharacter>
+    public class DBCharacter: ICharacter<ResCharacter>
     {
         public SqlConnection? Con { get; set; }
         public DBCharacter()
         {
 
         }
-        public async Task<RESCharacter> ListCharacter(string name)
+        public async Task<ResCharacter> GetCharacter(string name)
         {
             using (Con = ConnectionFactory.GetConnection())
             {
                 var param = new DynamicParameters();
                 param.Add("@name", name);
  
-                var result = await Con.QueryFirstOrDefaultAsync<RESCharacter>("sp_getCharacter", param, commandType: CommandType.StoredProcedure);          
+                var result = await Con.QueryFirstOrDefaultAsync<ResCharacter>("sp_getCharacter", param, commandType: CommandType.StoredProcedure);          
                 return result;
             }
         }
